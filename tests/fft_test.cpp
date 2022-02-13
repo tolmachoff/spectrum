@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-TEST(StupidTest, Test1)
+TEST(FFTTest, Test1)
 {
     cmplx_vec_t v {1, 0, 0, 0};
 
@@ -22,7 +22,7 @@ TEST(StupidTest, Test1)
 }
 
 
-TEST(StupidTest, Test2)
+TEST(FFTTest, Test2)
 {
     cmplx_vec_t v {1, 1, 1, 1};
 
@@ -38,7 +38,7 @@ TEST(StupidTest, Test2)
 }
 
 
-TEST(StupidTest, Test3)
+TEST(FFTTest, Test3)
 {
     cmplx_vec_t v {1, 0, -1, 0};
 
