@@ -9,6 +9,8 @@ enable_testing()
 
 add_subdirectory(googletest)
 
+add_subdirectory(AudioFile)
+
 add_subdirectory(BMP)
 
 add_subdirectory(fft)
