@@ -1,35 +1,14 @@
 #pragma once
 
-
-class RW {};
-
-class RO {};
-
-
-template <typename Mode, typename T>
-class Property;
+#include <functional>
 
 
 template <typename T>
-class Property<RO, T>
+class Property
 {
 public:
-    Property(const T& val) : m_val(val) {}
+    Property() : m_val() {}
 
-    const T& get() const
-    {
-        return m_val;
-    }
-
-private:
-    T m_val;
-};
-
-
-template <typename T>
-class Property<RW, T>
-{
-public:
     Property(const T& val) : m_val(val) {}
 
     const T& get() const
@@ -40,8 +19,20 @@ public:
     void set(const T& val)
     {
         m_val = val;
+        if (m_set_clbk)
+        {
+            m_set_clbk();
+        }
+    }
+
+    void set_set_clbk(std::function<void()> clbk)
+    {
+        m_set_clbk = clbk;
     }
     
 private:
     T m_val;
+
+    std::function<void()> m_set_clbk;
+    
 };
