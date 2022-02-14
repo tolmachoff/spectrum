@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../fft/fft.h"
+#include "fft.h"
 
 using namespace std;
 
@@ -11,8 +11,8 @@ TEST(FFTTest, Test1)
     cmplx_vec_t v {1, 0, 0, 0};
 
     FFT fft;
-    fft.set_data_size(4);
-    fft.set_fft_size(4);
+    fft.data_size.set(4);
+    fft.fft_size.set(4);
     auto V = fft.process(v);
 
     cmplx_vec_t etalon_V {1, 1, 1, 1};
@@ -27,8 +27,8 @@ TEST(FFTTest, Test2)
     cmplx_vec_t v {1, 1, 1, 1};
 
     FFT fft;
-    fft.set_data_size(4);
-    fft.set_fft_size(4);
+    fft.data_size.set(4);
+    fft.fft_size.set(4);
     auto V = fft.process(v);
 
     cmplx_vec_t etalon_V {4, 0, 0, 0};
@@ -43,8 +43,8 @@ TEST(FFTTest, Test3)
     cmplx_vec_t v {1, 0, -1, 0};
 
     FFT fft;
-    fft.set_data_size(4);
-    fft.set_fft_size(4);
+    fft.data_size.set(4);
+    fft.fft_size.set(4);
     auto V = fft.process(v);
 
     cmplx_vec_t etalon_V {0, 2, 0, 2};

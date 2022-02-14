@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "../BMP/BMP.h"
-#include "../BMP/color.h"
+#include "BMP.h"
+#include "color.h"
 
 
 
