@@ -7,8 +7,12 @@ struct FFT::Impl
 {
     FFT* q;
 
-
     IWindow* window;
+
+
+    Impl(FFT* p) 
+        : q(p)
+        , window(nullptr) {} 
 
     void update_window()
     {
@@ -24,7 +28,7 @@ struct FFT::Impl
 FFT::FFT()
     : data_size(1024)
     , fft_size(1024 * 8)
-    , d(new Impl {this})
+    , d(new Impl(this))
 {
     data_size.set_set_clbk(std::bind(&FFT::Impl::update_window, d.get()));
 }

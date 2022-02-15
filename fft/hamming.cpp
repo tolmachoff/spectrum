@@ -5,8 +5,10 @@ struct Hamming::Impl
 {
     Hamming* q;
 
-
     std::vector<double> window;
+
+
+    Impl(Hamming* p) : q(p) {}
 
     void update_window()
     {
@@ -22,7 +24,7 @@ struct Hamming::Impl
 
 
 Hamming::Hamming()
-    : d(new Hamming::Impl {this})
+    : d(new Hamming::Impl(this))
 {
     d->update_window();
     
