@@ -34,7 +34,6 @@ Hamming::Hamming()
 
 void Hamming::apply(cmplx_vec_t& v) const
 {
-    // TODO: Is it normal much time data_size.get() ?
     for (int i = 0; i < data_size.get(); ++i)
     {
         v[i] *= d->window[i];

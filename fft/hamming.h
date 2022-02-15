@@ -1,6 +1,6 @@
 #pragma once
 
-#include "window.h"
+#include "iwindow.h"
 #include "impl.h"
 
 

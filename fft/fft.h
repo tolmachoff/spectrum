@@ -1,7 +1,7 @@
 #pragma once
 
-#include "window.h"
 #include "fft_types.h"
+#include "iwindow.h"
 #include "property.h"
 #include "impl.h"
 
