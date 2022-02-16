@@ -19,4 +19,6 @@ add_subdirectory(filter)
 
 add_subdirectory(source)
 
+add_subdirectory(sync)
+
 add_subdirectory(tests)

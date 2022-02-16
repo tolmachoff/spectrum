@@ -13,6 +13,9 @@ target_link_libraries(filter_test filter gtest_main)
 add_executable(source_test source_test.cpp)
 target_link_libraries(source_test source gtest_main)
 
+add_executable(sync_test sync_test.cpp)
+target_link_libraries(sync_test sync fft source gtest_main)
+
 
 add_test(NAME fft_test COMMAND fft_test)
 
@@ -21,3 +24,5 @@ add_test(NAME bmp_test COMMAND bmp_test)
 add_test(NAME filter_test COMMAND filter_test)
 
 add_test(NAME source_test COMMAND source_test)
+
+add_test(NAME sync_test COMMAND source_test)

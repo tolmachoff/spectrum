@@ -4,9 +4,8 @@
 #include "impl.h"
 
 
-class Noise
+struct Noise
 {
-public:
     Noise(double m, double s);
 
     double get_sample() const;
