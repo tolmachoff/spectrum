@@ -13,8 +13,7 @@ TEST(FFTTest, Test1)
 
     FFT fft;
     fft.data_size.set(4);
-    fft.fft_size.set(4);
-    auto V = fft.process(v);
+    auto V = fft.forward(v);
 
     spectrum_t etalon_V {1, 1, 1, 1};
 
@@ -29,8 +28,7 @@ TEST(FFTTest, Test2)
 
     FFT fft;
     fft.data_size.set(4);
-    fft.fft_size.set(4);
-    auto V = fft.process(v);
+    auto V = fft.forward(v);
 
     spectrum_t etalon_V {4, 0, 0, 0};
 
@@ -45,8 +43,7 @@ TEST(FFTTest, Test3)
 
     FFT fft;
     fft.data_size.set(4);
-    fft.fft_size.set(4);
-    auto V = fft.process(v);
+    auto V = fft.forward(v);
 
     spectrum_t etalon_V {0, 2, 0, 2};
 
@@ -61,16 +58,32 @@ TEST(FFTTest, Test4)
 
     FFT fft;
     fft.data_size.set(4);
-    fft.fft_size.set(4);
 
     Hamming hamming;
-    fft.set_window(&hamming);
+    hamming.data_size.set(4);
+    
+    auto v_wnd = hamming.apply(v);
 
-    auto V = fft.process(v);
+    auto V = fft.forward(v_wnd);
 
     EXPECT_EQ(V.size(), 4);
     for (int i = 0; i < 4; ++i)
     {
         EXPECT_FLOAT_EQ(V[i].real(), 0.07672);
     }
+}
+
+
+TEST(FFTTest, Test5)
+{
+    signal_t v {1, 0, 0, 0};
+
+    FFT fft;
+    fft.data_size.set(4);
+
+    auto V = fft.forward(v);
+
+    auto v_ = fft.backward(V);
+
+    EXPECT_EQ(v, v_);
 }

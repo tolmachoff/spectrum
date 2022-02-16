@@ -1,9 +1,7 @@
 #pragma once
 
 #include "fft_types.h"
-#include "iwindow.h"
 #include "property.h"
-#include "impl.h"
 
 
 class FFT
@@ -11,15 +9,11 @@ class FFT
 public:
     FFT();
 
-    spectrum_t process(const signal_t& in) const;
-
-    void set_window(IWindow* wnd);
+    spectrum_t forward(const signal_t& in) const;
+    signal_t backward(const spectrum_t& in) const;
 
 
     Property<int> data_size;
-    Property<int> fft_size;
 
-
-    IMPL;
 
 };
