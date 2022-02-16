@@ -1,6 +1,9 @@
 project(fft)
 
-set(SOURCES fft.cpp hamming.cpp)
+set(SOURCES 
+    fft.cpp 
+    hamming.cpp 
+    rescaler.cpp)
 
 add_library(${PROJECT_NAME} ${SOURCES})
 
