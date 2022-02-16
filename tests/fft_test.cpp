@@ -11,9 +11,7 @@ TEST(FFTTest, Test1)
 {
     signal_t v {1, 0, 0, 0};
 
-    FFT fft;
-    fft.data_size.set(4);
-    auto V = fft.forward(v);
+    auto V = FFT {Direction::Forward} << v;
 
     spectrum_t etalon_V {1, 1, 1, 1};
 
@@ -26,9 +24,7 @@ TEST(FFTTest, Test2)
 {
     signal_t v {1, 1, 1, 1};
 
-    FFT fft;
-    fft.data_size.set(4);
-    auto V = fft.forward(v);
+    auto V = FFT {Direction::Forward} << v;
 
     spectrum_t etalon_V {4, 0, 0, 0};
 
@@ -41,9 +37,7 @@ TEST(FFTTest, Test3)
 {
     signal_t v {1, 0, -1, 0};
 
-    FFT fft;
-    fft.data_size.set(4);
-    auto V = fft.forward(v);
+    auto V = FFT {Direction::Forward} << v;
 
     spectrum_t etalon_V {0, 2, 0, 2};
 
@@ -56,15 +50,7 @@ TEST(FFTTest, Test4)
 {
     signal_t v {1, 0, 0, 0};
 
-    FFT fft;
-    fft.data_size.set(4);
-
-    Hamming hamming;
-    hamming.data_size.set(4);
-    
-    auto v_wnd = hamming.apply(v);
-
-    auto V = fft.forward(v_wnd);
+    auto V = FFT {Direction::Forward} << (Hamming() << v);
 
     EXPECT_EQ(V.size(), 4);
     for (int i = 0; i < 4; ++i)
@@ -78,12 +64,9 @@ TEST(FFTTest, Test5)
 {
     signal_t v {1, 0, 0, 0};
 
-    FFT fft;
-    fft.data_size.set(4);
+    auto V = FFT {Direction::Forward} << v;
 
-    auto V = fft.forward(v);
-
-    auto v_ = fft.backward(V);
+    auto v_ = FFT {Direction::Backward} << V;
 
     EXPECT_EQ(v, v_);
 }

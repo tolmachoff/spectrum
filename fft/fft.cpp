@@ -2,16 +2,17 @@
 
 #include <fftw3.h>
 
+#include <algorithm>
+#include <cassert>
 
-FFT::FFT() : data_size(1024) {}
 
-
-spectrum_t FFT::forward(const signal_t& in) const
+spectrum_t operator<<(const FFT& fft, const signal_t& in)
 {
-    spectrum_t res(data_size.get());
-    std::copy(in.begin(), in.end(), res.begin());
+    assert(fft.dir == Direction::Forward);
+
+    spectrum_t res(in.begin(), in.end());
     
-    fftw_plan plan = fftw_plan_dft_1d(data_size.get(),
+    fftw_plan plan = fftw_plan_dft_1d(res.size(),
                                       reinterpret_cast<fftw_complex*>(res.data()),
                                       reinterpret_cast<fftw_complex*>(res.data()),
                                       FFTW_FORWARD,
@@ -23,11 +24,13 @@ spectrum_t FFT::forward(const signal_t& in) const
 }
 
 
-signal_t FFT::backward(const spectrum_t& in) const
+signal_t operator<<(const FFT& fft, const spectrum_t& in)
 {
+    assert(fft.dir == Direction::Backward);
+
     spectrum_t tmp(in);
 
-    fftw_plan plan = fftw_plan_dft_1d(data_size.get(),
+    fftw_plan plan = fftw_plan_dft_1d(tmp.size(),
                                       reinterpret_cast<fftw_complex*>(tmp.data()),
                                       reinterpret_cast<fftw_complex*>(tmp.data()),
                                       FFTW_BACKWARD,
@@ -35,8 +38,8 @@ signal_t FFT::backward(const spectrum_t& in) const
     fftw_execute(plan);
     fftw_destroy_plan(plan);
 
-    signal_t res(data_size.get());
-    std::transform(tmp.begin(), tmp.end(), res.begin(), [this](auto x) { return std::abs(x) / data_size.get(); });
+    signal_t res(tmp.size());
+    std::transform(tmp.begin(), tmp.end(), res.begin(), [&res](auto x) { return std::abs(x) / res.size(); });
     
     return res;
 }

@@ -1,16 +1,9 @@
 #pragma once
 
-#include "iwindow.h"
-#include "impl.h"
+#include "fft_types.h"
 
 
-class Hamming : public IWindow
-{
-public:
-    Hamming();
-
-    signal_t apply(const signal_t& v) const override;
+struct Hamming {};
 
 
-    IMPL;
-};
+signal_t operator<<(const Hamming&, const signal_t& in);

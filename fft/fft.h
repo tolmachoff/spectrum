@@ -1,19 +1,21 @@
 #pragma once
 
 #include "fft_types.h"
-#include "property.h"
 
 
-class FFT
+enum class Direction
 {
-public:
-    FFT();
-
-    spectrum_t forward(const signal_t& in) const;
-    signal_t backward(const spectrum_t& in) const;
-
-
-    Property<int> data_size;
-
-
+    Forward,
+    Backward
 };
+
+
+struct FFT
+{
+    Direction dir;
+};
+
+
+spectrum_t operator<<(const FFT& fft, const signal_t& in);
+
+signal_t operator<<(const FFT& fft, const spectrum_t& in);
