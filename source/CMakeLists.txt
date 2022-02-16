@@ -1,6 +1,6 @@
 project(source)
 
-set(SOURCES noise.cpp)
+set(SOURCES noise.cpp sinus.cpp)
 
 add_library(${PROJECT_NAME} ${SOURCES})
 
