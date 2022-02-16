@@ -17,4 +17,6 @@ add_subdirectory(BMP)
 
 add_subdirectory(fft)
 
+add_subdirectory(filter)
+
 add_subdirectory(tests)
