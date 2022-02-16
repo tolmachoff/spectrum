@@ -6,7 +6,7 @@
 
 struct Noise
 {
-    Noise(double m, double s);
+    Noise(double m, double sigma);
 
     double get_sample() const;
 

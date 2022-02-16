@@ -6,22 +6,15 @@
 
 struct Noise::Impl
 {
-    double mean;
-    double sigma;
-
     std::default_random_engine dre;
     std::normal_distribution<double> dist;
 
 
-    Impl(double m, double s)
-        : mean(m)
-        , sigma(s)
-        , dist(m, s) {}
+    Impl(double m, double sigma) : dist(m, sigma) {}
 };
 
 
-Noise::Noise(double m, double s)
-    : d(new Impl(m, s)) {}
+Noise::Noise(double m, double sigma) : d(new Impl(m, sigma)) {}
 
 
 double Noise::get_sample() const

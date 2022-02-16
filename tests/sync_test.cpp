@@ -11,7 +11,7 @@ using namespace std;
 
 TEST(SyncTest, Spectrogram01)
 {
-    Sinus sinus(44100.0, 440.0, 0.1);
+    Sinus sinus{44100.0, 440.0, 0.1};
     Spectrogram spectr("spectrogram01.bmp");
 
     for (int i = 0; i < 880; ++i)
