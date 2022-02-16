@@ -6,4 +6,4 @@
 struct Hamming {};
 
 
-signal_t operator<<(const Hamming&, const signal_t& in);
+signal_t operator>>(const signal_t& in, const Hamming&);

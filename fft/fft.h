@@ -16,6 +16,6 @@ struct FFT
 };
 
 
-spectrum_t operator<<(const FFT& fft, const signal_t& in);
+spectrum_t operator>>(const signal_t& in, const FFT& fft);
 
-signal_t operator<<(const FFT& fft, const spectrum_t& in);
+signal_t operator>>(const spectrum_t& in, const FFT& fft);

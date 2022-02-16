@@ -6,7 +6,7 @@
 #include <cassert>
 
 
-spectrum_t operator<<(const FFT& fft, const signal_t& in)
+spectrum_t operator>>(const signal_t& in, const FFT& fft)
 {
     assert(fft.dir == Direction::Forward);
 
@@ -24,7 +24,7 @@ spectrum_t operator<<(const FFT& fft, const signal_t& in)
 }
 
 
-signal_t operator<<(const FFT& fft, const spectrum_t& in)
+signal_t operator>>(const spectrum_t& in, const FFT& fft)
 {
     assert(fft.dir == Direction::Backward);
 
