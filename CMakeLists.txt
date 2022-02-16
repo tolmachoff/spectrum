@@ -9,14 +9,14 @@ enable_testing()
 
 add_subdirectory(googletest)
 
-add_subdirectory(AudioFile)
+add_subdirectory(3rd_party)
 
 add_subdirectory(common)
-
-add_subdirectory(BMP)
 
 add_subdirectory(fft)
 
 add_subdirectory(filter)
+
+add_subdirectory(source)
 
 add_subdirectory(tests)

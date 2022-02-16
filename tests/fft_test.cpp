@@ -55,7 +55,7 @@ TEST(FFTTest, Test4)
     EXPECT_EQ(V.size(), 4);
     for (int i = 0; i < 4; ++i)
     {
-        EXPECT_FLOAT_EQ(V[i].real(), 0.07672);
+        EXPECT_NEAR(V[i].real(), 0.07672, 1e-5);
     }
 }
 
