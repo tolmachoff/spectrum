@@ -34,16 +34,20 @@ FFT::FFT()
 }
 
 
-cmplx_vec_t FFT::process(const cmplx_vec_t& in) const
+spectrum_t FFT::process(const signal_t& in) const
 {
-    cmplx_vec_t res(in);
-    res.resize(fft_size.get());
+    spectrum_t res(fft_size.get());
 
     if (d->window)
     {
-        d->window->apply(res);
+        auto in_wnd = d->window->apply(in);
+        std::copy(in_wnd.begin(), in_wnd.end(), res.begin());
     }
-
+    else
+    {
+        std::copy(in.begin(), in.end(), res.begin());
+    }
+    
     fftw_plan plan = fftw_plan_dft_1d(fft_size.get(),
                                       reinterpret_cast<fftw_complex*>(res.data()),
                                       reinterpret_cast<fftw_complex*>(res.data()),

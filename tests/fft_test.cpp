@@ -9,14 +9,14 @@ using namespace std;
 
 TEST(FFTTest, Test1)
 {
-    cmplx_vec_t v {1, 0, 0, 0};
+    signal_t v {1, 0, 0, 0};
 
     FFT fft;
     fft.data_size.set(4);
     fft.fft_size.set(4);
     auto V = fft.process(v);
 
-    cmplx_vec_t etalon_V {1, 1, 1, 1};
+    spectrum_t etalon_V {1, 1, 1, 1};
 
     EXPECT_EQ(V.size(), 4);
     EXPECT_EQ(V, etalon_V);
@@ -25,14 +25,14 @@ TEST(FFTTest, Test1)
 
 TEST(FFTTest, Test2)
 {
-    cmplx_vec_t v {1, 1, 1, 1};
+    signal_t v {1, 1, 1, 1};
 
     FFT fft;
     fft.data_size.set(4);
     fft.fft_size.set(4);
     auto V = fft.process(v);
 
-    cmplx_vec_t etalon_V {4, 0, 0, 0};
+    spectrum_t etalon_V {4, 0, 0, 0};
 
     EXPECT_EQ(V.size(), 4);
     EXPECT_EQ(V, etalon_V);
@@ -41,14 +41,14 @@ TEST(FFTTest, Test2)
 
 TEST(FFTTest, Test3)
 {
-    cmplx_vec_t v {1, 0, -1, 0};
+    signal_t v {1, 0, -1, 0};
 
     FFT fft;
     fft.data_size.set(4);
     fft.fft_size.set(4);
     auto V = fft.process(v);
 
-    cmplx_vec_t etalon_V {0, 2, 0, 2};
+    spectrum_t etalon_V {0, 2, 0, 2};
 
     EXPECT_EQ(V.size(), 4);
     EXPECT_EQ(V, etalon_V);
@@ -57,7 +57,7 @@ TEST(FFTTest, Test3)
 
 TEST(FFTTest, Test4)
 {
-    cmplx_vec_t v {1, 0, 0, 0};
+    signal_t v {1, 0, 0, 0};
 
     FFT fft;
     fft.data_size.set(4);

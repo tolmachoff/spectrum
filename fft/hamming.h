@@ -9,7 +9,7 @@ class Hamming : public IWindow
 public:
     Hamming();
 
-    void apply(cmplx_vec_t& v) const override;
+    signal_t apply(const signal_t& v) const override;
 
 
     IMPL;

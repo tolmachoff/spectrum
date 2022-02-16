@@ -32,10 +32,12 @@ Hamming::Hamming()
 }
 
 
-void Hamming::apply(cmplx_vec_t& v) const
+signal_t Hamming::apply(const signal_t& v) const
 {
+    signal_t res(v);
     for (int i = 0; i < data_size.get(); ++i)
     {
-        v[i] *= d->window[i];
+        res[i] *= d->window[i];
     }
+    return res;
 }

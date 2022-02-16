@@ -7,7 +7,7 @@
 class IWindow
 {
 public:
-    virtual void apply(cmplx_vec_t& v) const = 0;
+    virtual signal_t apply(const signal_t& v) const = 0;
 
     Property<int> data_size;
     

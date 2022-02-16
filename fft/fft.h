@@ -11,7 +11,7 @@ class FFT
 public:
     FFT();
 
-    cmplx_vec_t process(const cmplx_vec_t& in) const;
+    spectrum_t process(const signal_t& in) const;
 
     void set_window(IWindow* wnd);
 
