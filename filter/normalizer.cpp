@@ -3,7 +3,7 @@
 #include <algorithm>
 
 
-signal_t operator>>(const signal_t& in, const Normalizer&)
+signal_t Normalizer::process(const signal_t& in)
 {
     auto max_it = std::max_element(in.begin(),
                                    in.end(),

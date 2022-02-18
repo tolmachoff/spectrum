@@ -23,7 +23,8 @@ TEST(SourceTest, Noise01)
 
 TEST(SourceTest, Sinus01)
 {
-    Sinus sinus {4.0, 1.0, 1.0};
+    Sinus sinus(1.0, 1.0);
+    sinus.fs.set(4);
 
     auto v = 16 >> sinus;
     

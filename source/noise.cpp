@@ -17,20 +17,14 @@ struct Noise::Impl
 Noise::Noise(double m, double sigma) : d(new Impl(m, sigma)) {}
 
 
-double Noise::get_sample() const
+signal_t Noise::process(const int& in)
 {
-    return d->dist(d->dre);
-}
-
-
-signal_t operator>>(int samples, const Noise& noise)
-{
-    signal_t res(samples);
+    signal_t res(in);
     std::generate(res.begin(),
                   res.end(),
-                    [&noise]()
+                    [this]()
                     {
-                        return noise.get_sample();
+                        return d->dist(d->dre);
                     });
     return res;
 }

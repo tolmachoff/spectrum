@@ -1,9 +1,16 @@
 #include "rescaler.h"
 
 
-signal_t operator>>(const signal_t& in, const Rescaler& rescaler)
+Rescaler::Rescaler(int data_size)
+    : data_size(data_size) 
+{
+    
+}
+
+
+signal_t Rescaler::process(const signal_t& in)
 {
     signal_t res(in);
-    res.resize(rescaler.data_size);
+    res.resize(data_size.get());
     return res;
 }

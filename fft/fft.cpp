@@ -3,13 +3,10 @@
 #include <fftw3.h>
 
 #include <algorithm>
-#include <cassert>
 
 
-spectrum_t operator>>(const signal_t& in, const FFT& fft)
+spectrum_t FFT::process(const signal_t& in)
 {
-    assert(fft.dir == Direction::Forward);
-
     spectrum_t res(in.begin(), in.end());
     
     fftw_plan plan = fftw_plan_dft_1d(res.size(),
@@ -24,10 +21,8 @@ spectrum_t operator>>(const signal_t& in, const FFT& fft)
 }
 
 
-signal_t operator>>(const spectrum_t& in, const FFT& fft)
+signal_t IFFT::process(const spectrum_t& in)
 {
-    assert(fft.dir == Direction::Backward);
-
     spectrum_t tmp(in);
 
     fftw_plan plan = fftw_plan_dft_1d(tmp.size(),

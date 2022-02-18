@@ -1,15 +1,21 @@
 #pragma once
 
 #include "fft_types.h"
+#include "i_processor.h"
+#include "property.h"
 
 
-struct Sinus
+struct Sinus : IProcessor<int, signal_t>
 {
-    double fs = 44100.0;
-    double f0 = 100.0;
-    double a = 1.0;
-    double phi = 0.0;
+    Sinus(double f0 = 100.0, double a = 1.0);
+
+
+    signal_t process(const int& in) override;
+
+
+    Property<double> f0;
+    Property<double> a;
+    Property<double> phi;
+    Property<double> fs;
+
 };
-
-
-signal_t operator>>(int samples, Sinus& sinus);

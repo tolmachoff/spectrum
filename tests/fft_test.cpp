@@ -11,7 +11,7 @@ TEST(FFTTest, Test1)
 {
     signal_t v {1, 0, 0, 0};
 
-    auto V = v >> FFT {Direction::Forward};
+    auto V = v >> FFT();
 
     spectrum_t etalon_V {1, 1, 1, 1};
 
@@ -24,7 +24,7 @@ TEST(FFTTest, Test2)
 {
     signal_t v {1, 1, 1, 1};
 
-    auto V = v >> FFT {Direction::Forward};
+    auto V = v >> FFT();
 
     spectrum_t etalon_V {4, 0, 0, 0};
 
@@ -37,7 +37,7 @@ TEST(FFTTest, Test3)
 {
     signal_t v {1, 0, -1, 0};
 
-    auto V = v >> FFT {Direction::Forward};
+    auto V = v >> FFT();
 
     spectrum_t etalon_V {0, 2, 0, 2};
 
@@ -50,7 +50,7 @@ TEST(FFTTest, Test4)
 {
     signal_t v {1, 0, 0, 0};
 
-    auto V = v >> Hamming {} >> FFT {Direction::Forward};
+    auto V = v >> Hamming() >> FFT();
 
     EXPECT_EQ(V.size(), 4);
     for (int i = 0; i < 4; ++i)
@@ -64,7 +64,7 @@ TEST(FFTTest, Test5)
 {
     signal_t v {1, 0, 0, 0};
 
-    auto v_ = v >> FFT {Direction::Forward} >> FFT {Direction::Backward};
+    auto v_ = v >> FFT() >> IFFT();
 
     EXPECT_EQ(v, v_);
 }

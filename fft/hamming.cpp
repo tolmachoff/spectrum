@@ -1,7 +1,7 @@
 #include "hamming.h"
 
 
-signal_t operator>>(const signal_t& in, const Hamming&)
+signal_t Hamming::process(const signal_t& in)
 {
     signal_t res(in);
 

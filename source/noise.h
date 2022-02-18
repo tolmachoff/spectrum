@@ -1,18 +1,17 @@
 #pragma once
 
 #include "fft_types.h"
+#include "i_processor.h"
 #include "impl.h"
 
 
-struct Noise
+struct Noise : IProcessor<int, signal_t>
 {
     Noise(double m, double sigma);
 
-    double get_sample() const;
+
+    signal_t process(const int& in) override;
 
 
     IMPL;
 };
-
-
-signal_t operator>>(int samples, const Noise& noise);

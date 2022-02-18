@@ -1,21 +1,16 @@
 #pragma once
 
 #include "fft_types.h"
+#include "i_processor.h"
 
 
-enum class Direction
+struct FFT : IProcessor<signal_t, spectrum_t>
 {
-    Forward,
-    Backward
+    spectrum_t process(const signal_t& in) override;
 };
 
 
-struct FFT
+struct IFFT : IProcessor<spectrum_t, signal_t>
 {
-    Direction dir;
+    signal_t process(const spectrum_t& in) override;
 };
-
-
-spectrum_t operator>>(const signal_t& in, const FFT& fft);
-
-signal_t operator>>(const spectrum_t& in, const FFT& fft);

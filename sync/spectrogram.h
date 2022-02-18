@@ -1,39 +1,34 @@
 #pragma once
 
 #include "fft_types.h"
+#include "i_processor.h"
+#include "property.h"
 #include "impl.h"
 
 #include <string>
 
 
-struct Spectrogram
+struct Spectrogram : IProcessor<spectrum_t, void>
 {
-    std::string     filename;
-    int             data_size       = 880;
-    double          fs              = 44100.0;
-    double          freq_min        = 27.5;
-    double          freq_max        = 4224.0;
-    double          ampl_min        = -40.0;
-    double          ampl_max        = 20.0;
-    bool            linear          = true;
-
-
     Spectrogram(const std::string& filename);
 
     ~Spectrogram();
 
 
-    void add_chunk(const spectrum_t& in);
+    void process(const spectrum_t& in) override;
 
-    void finish();
+    void commit();
+
+
+    Property<std::string>   filename;
+    Property<int>           data_size;
+    Property<double>        fs;
+    Property<double>        freq_min;
+    Property<double>        freq_max;
+    Property<double>        ampl_min;
+    Property<double>        ampl_max;
+    Property<bool>          linear;
 
 
     IMPL;
 };
-
-struct SpectrogramEOF {};
-
-
-void operator>>(const spectrum_t& in, Spectrogram& spectrogram);
-
-void operator>>(const SpectrogramEOF&, Spectrogram& spectrogram);

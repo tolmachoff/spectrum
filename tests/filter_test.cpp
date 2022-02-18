@@ -10,7 +10,7 @@ TEST(FilterTest, Normalizer01)
 {
     signal_t v {2, 0, -8, 4};
 
-    auto v_norm = v >> Normalizer {};
+    auto v_norm = v >> Normalizer();
 
     signal_t v_etalon = {0.25, 0, -1, 0.5};
 

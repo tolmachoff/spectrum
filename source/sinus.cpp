@@ -1,13 +1,23 @@
 #include "sinus.h"
 
 
-signal_t operator>>(int samples, Sinus& sinus)
+Sinus::Sinus(double f0, double a)
+    : f0(f0)
+    , a(a)
+    , phi(0.0)
+    , fs(44100.0)
 {
-    signal_t res(samples);
+
+}
+
+
+signal_t Sinus::process(const int& in)
+{
+    signal_t res(in);
     for (auto& x : res)
     {
-        x = sinus.a * sin(sinus.phi);
-        sinus.phi += 2 * M_PI * sinus.f0 / sinus.fs;
+        x = a.get() * sin(phi.get());
+        phi.set(phi.get() + 2 * M_PI * f0.get() / fs.get());
     }
     return res;
 }
