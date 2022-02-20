@@ -1,13 +1,11 @@
 #include <gtest/gtest.h>
 
+#include <numeric>
+
 #include "noise.h"
 #include "sinus.h"
 
-#include <numeric>
-
 using namespace std;
-
-
 
 TEST(SourceTest, Noise01)
 {
@@ -20,16 +18,15 @@ TEST(SourceTest, Noise01)
     EXPECT_NEAR(mean, 0.0, 0.1);
 }
 
-
 TEST(SourceTest, Sinus01)
 {
     Sinus sinus(1.0, 1.0);
     sinus.fs.set(4);
 
     auto v = 16 >> sinus;
-    
-    signal_t v_etalon {0.0, 1.0, 0.0, -1.0};
-    
+
+    signal_t v_etalon{0.0, 1.0, 0.0, -1.0};
+
     for (size_t i = 0; i < 16; ++i)
     {
         EXPECT_NEAR(v[i], v_etalon[i % 4], 1e-6);

@@ -1,12 +1,7 @@
 #include "rescaler.h"
 
-
-Rescaler::Rescaler(int data_size)
-    : data_size(data_size) 
-{
-    
-}
-
+Rescaler::Rescaler(int data_size) : data_size(data_size)
+{}
 
 signal_t Rescaler::process(const signal_t& in)
 {

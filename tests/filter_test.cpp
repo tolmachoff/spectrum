@@ -4,11 +4,9 @@
 
 using namespace std;
 
-
-
 TEST(FilterTest, Normalizer01)
 {
-    signal_t v {2, 0, -8, 4};
+    signal_t v{2, 0, -8, 4};
 
     auto v_norm = v >> Normalizer();
 
@@ -16,4 +14,3 @@ TEST(FilterTest, Normalizer01)
 
     EXPECT_EQ(v_norm, v_etalon);
 }
-

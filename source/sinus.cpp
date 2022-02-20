@@ -1,15 +1,7 @@
 #include "sinus.h"
 
-
-Sinus::Sinus(double f0, double a)
-    : f0(f0)
-    , a(a)
-    , phi(0.0)
-    , fs(44100.0)
-{
-
-}
-
+Sinus::Sinus(double f0, double a) : f0(f0), a(a), phi(0.0), fs(44100.0)
+{}
 
 signal_t Sinus::process(const int& in)
 {

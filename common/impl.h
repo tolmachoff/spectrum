@@ -4,9 +4,7 @@
 
 using std::shared_ptr;
 
-
-#define IMPL                    \
-private:                        \
-    struct Impl;                \
+#define IMPL     \
+private:         \
+    struct Impl; \
     shared_ptr<Impl> d
-

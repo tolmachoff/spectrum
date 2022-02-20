@@ -1,14 +1,12 @@
 #include <gtest/gtest.h>
 
-#include "sinus.h"
+#include "fft.h"
 #include "hamming.h"
 #include "rescaler.h"
-#include "fft.h"
+#include "sinus.h"
 #include "spectrogram.h"
 
 using namespace std;
-
-
 
 TEST(SyncTest, Spectrogram01)
 {

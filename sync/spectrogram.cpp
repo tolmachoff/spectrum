@@ -2,13 +2,11 @@
 
 #include "BMP.h"
 
-
 enum class State
 {
     WAITING_FIRST,
     COLLECTING
 };
-
 
 struct Spectrogram::Impl
 {
@@ -16,10 +14,9 @@ struct Spectrogram::Impl
 
     std::vector<std::vector<uint8_t>> chunks;
 
-
-    Impl() : state(State::WAITING_FIRST) {} 
+    Impl() : state(State::WAITING_FIRST)
+    {}
 };
-
 
 Spectrogram::Spectrogram(const std::string& filename)
     : filename(filename)
@@ -31,16 +28,12 @@ Spectrogram::Spectrogram(const std::string& filename)
     , ampl_max(20.0)
     , linear(true)
     , d(new Impl)
-{
-
-}
-
+{}
 
 Spectrogram::~Spectrogram()
 {
     commit();
 }
-
 
 void Spectrogram::process(const spectrum_t& in)
 {
@@ -48,26 +41,26 @@ void Spectrogram::process(const spectrum_t& in)
     for (int i = 0; i < data_size.get(); ++i)
     {
         double freq = freq_min.get();
-        if (linear.get()) 
+        if (linear.get())
         {
             freq += (freq_max.get() - freq_min.get()) * i / (data_size.get() - 1);
         }
-        else 
+        else
         {
             freq *= std::pow(freq_max.get() / freq_min.get(), 1.0 * i / data_size.get());
         }
         double freq_res = 1.0 * fs.get() / in.size();
-        int freq_num = static_cast<int>(std::round(freq / freq_res));
-        double ampl = 20.0 * std::log10(std::abs(in[freq_num]));
-        if (ampl < ampl_min.get()) 
+        int freq_num    = static_cast<int>(std::round(freq / freq_res));
+        double ampl     = 20.0 * std::log10(std::abs(in[freq_num]));
+        if (ampl < ampl_min.get())
         {
             chunk[i] = 0;
         }
-        else if (ampl > ampl_max.get()) 
+        else if (ampl > ampl_max.get())
         {
             chunk[i] = 255;
         }
-        else 
+        else
         {
             chunk[i] = static_cast<uint8_t>(255.0 * (ampl - ampl_min.get()) / (ampl_max.get() - ampl_min.get()));
         }
@@ -79,7 +72,6 @@ void Spectrogram::process(const spectrum_t& in)
         d->state = State::COLLECTING;
     }
 }
-
 
 void Spectrogram::commit()
 {

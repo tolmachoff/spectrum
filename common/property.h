@@ -2,14 +2,15 @@
 
 #include <functional>
 
-
 template <typename T>
 class Property
 {
 public:
-    Property() : m_val() {}
+    Property() : m_val()
+    {}
 
-    Property(const T& val) : m_val(val) {}
+    Property(const T& val) : m_val(val)
+    {}
 
     const T& get() const
     {
@@ -29,10 +30,9 @@ public:
     {
         m_set_clbk = clbk;
     }
-    
+
 private:
     T m_val;
 
     std::function<void()> m_set_clbk;
-    
 };
